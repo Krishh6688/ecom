@@ -135,7 +135,6 @@ docker images -a
 ```
 
 ```bash
-docker run -d -p 8501:8501 entbappy/stapp 
 docker run -d -p 8501:8501 gk/bookapp 
 ```
 
@@ -164,17 +163,15 @@ docker login
 ```
 
 ```bash
-docker push entbappy/stapp:latest 
 docker push gk/bookapp:latest 
 ```
 
 ```bash
-docker rmi entbappy/stapp:latest
+
 docker rmi gk/bookapp:latest
 ```
 
 ```bash
-docker pull entbappy/stapp
 docker pull gk/bookapp
 ```
 

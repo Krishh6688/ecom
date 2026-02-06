@@ -1,17 +1,37 @@
-FROM python:3.7-slim-buster
+# ===========================
+# Base Image
+# ===========================
+FROM python:3.10-slim
 
-EXPOSE 8501
+# ===========================
+# Set working directory
+# ===========================
+WORKDIR /app
 
+# ===========================
+# Install system dependencies
+# ===========================
 RUN apt-get update && apt-get install -y \
     build-essential \
-    software-properties-common \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
-
+# ===========================
+# Copy project files
+# ===========================
 COPY . /app
 
-RUN pip3 install -r requirements.txt
+# ===========================
+# Install Python dependencies
+# ===========================
+RUN pip install --no-cache-dir -r requirements.txt
 
+# ===========================
+# Streamlit Port
+# ===========================
+EXPOSE 8501
+
+# ===========================
+# Run Streamlit App
+# ===========================
 ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
